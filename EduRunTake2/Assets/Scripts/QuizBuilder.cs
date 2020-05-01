@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+//using UnityEngine.UIElements;
 
 public class QuizBuilder : MonoBehaviour
 {
@@ -16,14 +17,15 @@ public class QuizBuilder : MonoBehaviour
     [Header("Other GameObjects")]
     public GameObject buttonLayoutGroup;
     public GameObject questionButton;
+    public TMP_InputField quizTitle;
 
     // need to reset this whenever a new quiz is created
-    public List<Question_NH> unfinishedQuiz;
+    public List<Question> unfinishedQuiz;
 
     // Start is called before the first frame update
     void Start()
     {
-        unfinishedQuiz = new List<Question_NH>();
+        unfinishedQuiz = new List<Question>();
     }
 
     public void saveQuestion(int index)
@@ -52,7 +54,7 @@ public class QuizBuilder : MonoBehaviour
 
         // gather all question components
         string[] answers = new string[3] { a1Txt.text, a2Txt.text, a3Txt.text };
-        Question_NH newQuestion = new Question_NH(questionTxt.text, answers, correct);
+        Question newQuestion = new Question(questionTxt.text, answers, correct);
 
         if (unfinishedQuiz.Count > index) unfinishedQuiz[index] = newQuestion;
         else unfinishedQuiz.Add(newQuestion);
@@ -73,7 +75,25 @@ public class QuizBuilder : MonoBehaviour
     public void saveQuiz()
     {
         if (unfinishedQuiz.Count > 0)
+        {
+            string[] none = new string[3] { "", "", "" };
+            if(quizTitle.text == "")
+            {
+                Debug.Log("Invalid quiz name");
+                return;
+            }
+            Question title = new Question(quizTitle.text, none, -1);    // adding one more Question that holds the name of the quiz, this is not an actual question
+            unfinishedQuiz.Add(title);
+
             SaveLoad.SaveQuestionSet(unfinishedQuiz);
+
+            //reset stuff
+            quizTitle.text = "";
+            foreach (QuestionButton a in buttonLayoutGroup.transform.GetComponentsInChildren<QuestionButton>()) Destroy(a.gameObject);
+            unfinishedQuiz = new List<Question>();
+            buttonLayoutGroup.transform.parent.gameObject.SetActive(false);
+            testingLoadQuiz();
+        }
         else Debug.Log("Input more questions!");
     }
 
@@ -124,13 +144,27 @@ public class QuizBuilder : MonoBehaviour
 
 
 
+    public void testingLoadQuiz()
+    {
+        List<Question> quiz = SaveLoad.LoadQuestionSet();
+        Debug.Log(quiz[quiz.Count - 1].question);
 
+        for(int i = 0; i < quiz.Count - 1; i++)
+        {
+            Debug.Log("");
+            Debug.Log(quiz[i].question);
+            Debug.Log(quiz[i].answers[0]);
+            Debug.Log(quiz[i].answers[1]);
+            Debug.Log(quiz[i].answers[2]);
+            Debug.Log("The correct answer is: " + quiz[i].answers[quiz[i].correctIndex]);
+        }
+    }
 
     public void loadQuestionOld(int index)
     {
         // goind to change how this works, leaving original code here
 
-        List < Question_NH > qSet = SaveLoad.LoadQuestionSet();
+        List <Question> qSet = SaveLoad.LoadQuestionSet();
         if (qSet.Count >= index )
         {
 

@@ -11,7 +11,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public static class SaveLoad
 {
-    public static void SaveQuestionSet(List<Question_NH> questionSet)
+    public static void SaveQuestionSet(List<Question> questionSet)
     {
         // Set up to write a file
         var bf = new BinaryFormatter();
@@ -22,14 +22,14 @@ public static class SaveLoad
         Debug.Log("File Saved..");
     }
 
-    public static List<Question_NH> LoadQuestionSet()
+    public static List<Question> LoadQuestionSet()
     {
         Debug.Log("loading save data");
         if (File.Exists(Application.persistentDataPath + "/questionData.txt"))
         {
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/questionData.txt", FileMode.Open);
-            List<Question_NH> questions = (List<Question_NH>)bf.Deserialize(file);
+            List<Question> questions = (List<Question>)bf.Deserialize(file);
 
             file.Close();
 
@@ -38,7 +38,7 @@ public static class SaveLoad
         else
         {
             Debug.Log("No prior saved PlayerData");
-            var questions = new List<Question_NH>();
+            var questions = new List<Question>();
             return questions;
             //return null;
         }
