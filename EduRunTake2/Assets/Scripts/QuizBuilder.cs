@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
 //using UnityEngine.UIElements;
 
 public class QuizBuilder : MonoBehaviour
@@ -18,6 +19,11 @@ public class QuizBuilder : MonoBehaviour
     public GameObject buttonLayoutGroup;
     public GameObject questionButton;
     public TMP_InputField quizTitle;
+
+    [Header("Testing GameObjects")]
+    public GameObject tempProof;
+    public TMP_Text titleTemp;
+    public TMP_Text questionTemp;
 
     // need to reset this whenever a new quiz is created
     public List<Question> unfinishedQuiz;
@@ -92,7 +98,7 @@ public class QuizBuilder : MonoBehaviour
             foreach (QuestionButton a in buttonLayoutGroup.transform.GetComponentsInChildren<QuestionButton>()) Destroy(a.gameObject);
             unfinishedQuiz = new List<Question>();
             buttonLayoutGroup.transform.parent.gameObject.SetActive(false);
-            testingLoadQuiz();
+            testingLoadQuiz2();
         }
         else Debug.Log("Input more questions!");
     }
@@ -158,6 +164,27 @@ public class QuizBuilder : MonoBehaviour
             Debug.Log(quiz[i].answers[2]);
             Debug.Log("The correct answer is: " + quiz[i].answers[quiz[i].correctIndex]);
         }
+    }
+
+    public void testingLoadQuiz2()
+    {
+        tempProof.SetActive(true);
+
+        List<Question> quiz = SaveLoad.LoadQuestionSet();
+        titleTemp.text = quiz[quiz.Count - 1].question;
+
+        string finalOutput = "%";
+        for (int i = 0; i < quiz.Count - 1; i++)
+        {
+            finalOutput += ("%" + quiz[i].question);
+            finalOutput += ("%1. " + quiz[i].answers[0]);
+            finalOutput += ("%2. " + quiz[i].answers[1]);
+            finalOutput += ("%3. " + quiz[i].answers[2]);
+            finalOutput += ("%The correct answer is: " + quiz[i].answers[quiz[i].correctIndex]);
+        }
+
+        string thing = finalOutput.Replace("%", System.Environment.NewLine);
+        questionTemp.text = thing;
     }
 
     public void loadQuestionOld(int index)
