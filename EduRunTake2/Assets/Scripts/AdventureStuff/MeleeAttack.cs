@@ -8,6 +8,8 @@ public class MeleeAttack : MonoBehaviour
     public float attackRange = 0.5f;
     public LayerMask enemyLayers;
 
+    public int damage;
+
     private Animator anim;
 
     // Start is called before the first frame update
@@ -34,6 +36,7 @@ public class MeleeAttack : MonoBehaviour
         foreach(Collider2D enemy in enemiesHit)
         {
             Debug.Log("Enemy Hit!");
+            enemy.GetComponent<BasicEnemyHealth>().TakeDamage(damage);
         }
     }
 
