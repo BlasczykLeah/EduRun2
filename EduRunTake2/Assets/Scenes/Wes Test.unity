@@ -622,6 +622,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   damage: 2
+  cooldown: 0.7
 --- !u!95 &2031840444
 Animator:
   serializedVersion: 3
