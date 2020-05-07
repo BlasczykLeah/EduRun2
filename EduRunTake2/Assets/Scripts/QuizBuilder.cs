@@ -6,8 +6,22 @@ using TMPro;
 using System.Linq;
 //using UnityEngine.UIElements;
 
+    [System.Serializable]
+public class QuizContainer
+{
+    public List<Question> container;
+
+    public QuizContainer(List<Question> myList)
+    {
+        container = myList;
+    }
+}
+
 public class QuizBuilder : MonoBehaviour
 {
+    public static QuizBuilder inst;
+    GameManager gm;
+
     [Header("Question Inputs")]
     public TMP_InputField questionTxt;
     public TMP_InputField a1Txt;
@@ -19,16 +33,28 @@ public class QuizBuilder : MonoBehaviour
     public GameObject buttonLayoutGroup;
     public GameObject questionButton;
     public TMP_InputField quizTitle;
-
-    [Header("Testing GameObjects")]
-    public GameObject tempProof;
-    public TMP_Text titleTemp;
-    public TMP_Text questionTemp;
+    public GameObject confirmDeleteBox;
+    public GameObject quizzesMenu;
+    public GameObject gameplayMenu;
+    public GameObject quizEditorMenu;
+    public GameObject mainMenu;
+    QuizContainer editedQuiz;
 
     // need to reset this whenever a new quiz is created
     public List<Question> unfinishedQuiz;
 
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        if (inst == null)
+        {
+            inst = this;
+            gm = GameManager.inst;
+            gm.LoadQuizButtons();
+            gameObject.SetActive(false);
+        }
+        else Destroy(this);
+    }
+
     void Start()
     {
         unfinishedQuiz = new List<Question>();
@@ -37,7 +63,7 @@ public class QuizBuilder : MonoBehaviour
     public void saveQuestion(int index)
     {
         int correct = -1;
-        for(int i = 0; i < toggles.Length; i++)
+        for (int i = 0; i < toggles.Length; i++)
         {
             if (toggles[i].isOn)
             {
@@ -47,12 +73,12 @@ public class QuizBuilder : MonoBehaviour
         }
 
         // check for correctness:
-        if(questionTxt.text == "" || a1Txt.text == "" || a2Txt.text == "" || a3Txt.text == "")
+        if (questionTxt.text == "" || a1Txt.text == "" || a2Txt.text == "" || a3Txt.text == "")
         {
             Debug.Log("Invalid text inputs");
             return;
         }
-        else if(correct == -1)
+        else if (correct == -1)
         {
             Debug.Log("Choose correct answer");
             return;
@@ -68,14 +94,6 @@ public class QuizBuilder : MonoBehaviour
         resetInputs();
 
         questionTxt.transform.parent.gameObject.SetActive(false);
-
-        //List<Question_NH> qSet = SaveLoad.LoadQuestionSet();
-        //qSet.Add(newQuestion);
-
-
-        //SaveLoad.SaveQuestionSet(qSet);
-
-        //Debug.Log(currentQuestion + " created and saved.");
     }
 
     public void saveQuiz()
@@ -83,7 +101,7 @@ public class QuizBuilder : MonoBehaviour
         if (unfinishedQuiz.Count > 0)
         {
             string[] none = new string[3] { "", "", "" };
-            if(quizTitle.text == "")
+            if (quizTitle.text == "")
             {
                 Debug.Log("Invalid quiz name");
                 return;
@@ -91,16 +109,75 @@ public class QuizBuilder : MonoBehaviour
             Question title = new Question(quizTitle.text, none, -1);    // adding one more Question that holds the name of the quiz, this is not an actual question
             unfinishedQuiz.Add(title);
 
-            SaveLoad.SaveQuestionSet(unfinishedQuiz);
+            //SaveLoad.SaveQuizSet(unfinishedQuiz);
+            QuizContainer newQuiz = new QuizContainer(unfinishedQuiz);
+            gm.addQuizToSave(newQuiz);
 
-            //reset stuff
-            quizTitle.text = "";
-            foreach (QuestionButton a in buttonLayoutGroup.transform.GetComponentsInChildren<QuestionButton>()) Destroy(a.gameObject);
-            unfinishedQuiz = new List<Question>();
-            buttonLayoutGroup.transform.parent.gameObject.SetActive(false);
-            testingLoadQuiz2();
+            resetMenus();
         }
         else Debug.Log("Input more questions!");
+    }
+
+    void resetMenus()
+    {
+        //reset stuff
+        quizTitle.text = "";
+        foreach (QuestionButton a in buttonLayoutGroup.transform.GetComponentsInChildren<QuestionButton>()) Destroy(a.gameObject);
+        unfinishedQuiz = new List<Question>();
+        confirmDeleteBox.SetActive(false);
+        questionTxt.transform.parent.gameObject.SetActive(false);
+        buttonLayoutGroup.transform.parent.gameObject.SetActive(false);
+        editedQuiz = null;
+    }
+
+    public void openQuizBuilder(QuizContainer quiz)
+    {
+        gameObject.SetActive(true);
+        quizzesMenu.SetActive(false);
+        quizEditorMenu.SetActive(false);
+
+        editedQuiz = quiz;
+        unfinishedQuiz = new List<Question>();
+        for(int i = 0; i < quiz.container.Count - 1; i++)
+        {
+            newQuestionButton();
+            Question temp = quiz.container[i];
+            unfinishedQuiz.Add(temp);
+        }
+        quizTitle.text = quiz.container[unfinishedQuiz.Count].question;
+    }
+
+    public void showConfirmDelete()
+    {
+        confirmDeleteBox.SetActive(true);
+    }
+    public void confirmDeleteQuiz(bool delete)
+    {
+        if (delete)
+        {
+            deleteQuiz();
+            resetMenus();
+            mainMenu.SetActive(true);
+        }
+        else
+        {
+            // disable this window
+            confirmDeleteBox.SetActive(false);
+        }
+    }
+
+    void deleteQuiz()
+    {
+        if(editedQuiz != null)
+        {
+            int index = gm.quizStorage.IndexOf(editedQuiz);
+            gm.RemoveQuizButton(index);
+
+            gm.quizStorage.Remove(editedQuiz);
+            SaveLoad.SaveQuizSet(gm.quizStorage);
+            editedQuiz = null;
+            return;
+        }// else it should be removed by simply resetting everything
     }
 
     public void deleteQuestion(int index)
@@ -140,68 +217,41 @@ public class QuizBuilder : MonoBehaviour
         temp.constructor(unfinishedQuiz.Count, this, questionTxt.transform.parent.gameObject);
     }
 
+    public void startNewQuiz()
+    {
+        gameObject.SetActive(true);
+        quizzesMenu.SetActive(false);
+        quizEditorMenu.SetActive(false);
+        unfinishedQuiz = new List<Question>();
+    }
+
     void resetInputs()
     {
         questionTxt.text = a1Txt.text = a2Txt.text = a3Txt.text = "";
         foreach (Toggle t in toggles) t.isOn = false;
     }
 
-
-
-
-
-    public void testingLoadQuiz()
+    public void openQuizEditingMenu()
     {
-        List<Question> quiz = SaveLoad.LoadQuestionSet();
-        Debug.Log(quiz[quiz.Count - 1].question);
-
-        for(int i = 0; i < quiz.Count - 1; i++)
-        {
-            Debug.Log("");
-            Debug.Log(quiz[i].question);
-            Debug.Log(quiz[i].answers[0]);
-            Debug.Log(quiz[i].answers[1]);
-            Debug.Log(quiz[i].answers[2]);
-            Debug.Log("The correct answer is: " + quiz[i].answers[quiz[i].correctIndex]);
-        }
+        quizEditorMenu.SetActive(true);
+        quizzesMenu.SetActive(true);
+        foreach (QuizButton a in gm.quizButtons) a.purposeSwap = false;
+        mainMenu.SetActive(false);
     }
 
-    public void testingLoadQuiz2()
+    public void openGameplayMenu()
     {
-        tempProof.SetActive(true);
-
-        List<Question> quiz = SaveLoad.LoadQuestionSet();
-        titleTemp.text = quiz[quiz.Count - 1].question;
-
-        string finalOutput = "%";
-        for (int i = 0; i < quiz.Count - 1; i++)
-        {
-            finalOutput += ("%" + quiz[i].question);
-            finalOutput += ("%1. " + quiz[i].answers[0]);
-            finalOutput += ("%2. " + quiz[i].answers[1]);
-            finalOutput += ("%3. " + quiz[i].answers[2]);
-            finalOutput += ("%The correct answer is: " + quiz[i].answers[quiz[i].correctIndex]);
-        }
-
-        string thing = finalOutput.Replace("%", System.Environment.NewLine);
-        questionTemp.text = thing;
+        quizzesMenu.SetActive(true);
+        foreach (QuizButton a in gm.quizButtons) a.purposeSwap = true;
+        gameplayMenu.SetActive(true);
+        mainMenu.SetActive(false);
     }
 
-    public void loadQuestionOld(int index)
+    public void backToMain()
     {
-        // goind to change how this works, leaving original code here
-
-        List <Question> qSet = SaveLoad.LoadQuestionSet();
-        if (qSet.Count >= index )
-        {
-
-            Debug.Log(qSet[index].question);
-            foreach (string a in qSet[index].answers) Debug.Log(a);
-            Debug.Log("The correct answer is " + qSet[index].correctIndex);
-        }
-        else
-        {
-            Debug.Log("Question not found.");
-        }
+        quizzesMenu.SetActive(false);
+        gameplayMenu.SetActive(false);
+        quizEditorMenu.SetActive(false);
+        mainMenu.SetActive(true);
     }
 }

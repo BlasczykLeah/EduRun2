@@ -1,0 +1,102 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+
+public class GameManager : MonoBehaviour
+{
+    public static GameManager inst;
+
+    public List<QuizContainer> quizStorage; // load in quizzes here
+    public List<Question> activeQuiz;
+    public int chosenQuiz;
+
+    public GameObject layoutGroup;
+    public GameObject quizButtonPref;
+    public List<QuizButton> quizButtons;
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+        if (inst == null) inst = this;
+        else
+        {
+            // load quiz buttons on actual inst
+            Destroy(this.gameObject);
+        }
+
+        quizStorage = new List<QuizContainer>();
+        quizStorage = SaveLoad.LoadQuestionSet();
+    }
+
+    public void addQuizToSave(QuizContainer newQuiz)
+    {
+        quizStorage.Add(newQuiz);
+        SaveLoad.SaveQuizSet(quizStorage);
+    }
+
+    public Question pullQuestion()
+    {
+        if (activeQuiz == null) return null;
+
+        if(activeQuiz.Count > 1)    // the last question is just the name of the quiz; it cannot be picked
+        {
+            int randQuestion = UnityEngine.Random.Range(0, activeQuiz.Count - 1);
+            Question quest = activeQuiz[randQuestion];
+            activeQuiz.Remove(quest);
+            return quest;
+        }
+        else
+        {
+            Debug.Log("No questions left. This quiz should be over.");
+            return null;
+        }
+    }
+
+    public void setActiveQuiz(int index)
+    {
+        activeQuiz = new List<Question>();
+        foreach(Question a in quizStorage[index].container)
+        {
+            string[] array = new string[3] { a.answers[0], a.answers[1], a.answers[2] };
+            Question temp = new Question(a.question, array, a.correctIndex);
+            activeQuiz.Add(temp);
+        }
+    }
+
+    public void LoadQuizButtons()   // this is called every time the main menu opens
+    {
+        layoutGroup = GameObject.Find("QuizList");
+
+        quizButtons = new List<QuizButton>();
+
+        for(int i = 0; i < quizStorage.Count; i++)
+        {
+            AddQuizButton();
+        }
+        layoutGroup.transform.parent.gameObject.SetActive(false);
+        // set main menu
+    }
+
+    public void AddQuizButton()
+    {
+        GameObject newButton = Instantiate(quizButtonPref);
+        int newIndex;
+        newIndex = newButton.GetComponent<QuizButton>().quizIndex = quizButtons.Count;
+        quizButtons.Add(newButton.GetComponent<QuizButton>());
+
+        newButton.transform.GetChild(0).GetComponent<TMP_Text>().text = quizStorage[newIndex].container[quizStorage[newIndex].container.Count - 1].question;
+
+        newButton.transform.SetParent(layoutGroup.transform, false); //might need to fix scale too
+    }
+
+    public void RemoveQuizButton(int index)
+    {
+        Destroy(layoutGroup.transform.GetChild(index).gameObject);
+        foreach(QuizButton a in quizButtons)
+        {
+            a.quizIndex = a.transform.GetSiblingIndex();
+        }
+    }
+}
