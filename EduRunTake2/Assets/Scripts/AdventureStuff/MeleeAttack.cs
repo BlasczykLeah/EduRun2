@@ -8,8 +8,8 @@ public class MeleeAttack : MonoBehaviour
     public Transform attackPos;
     [Header("Radius for the attack hitbox")]
     public float attackRange = 0.5f;
-    [Header("Layers that are checked by the attack")]
-    public LayerMask enemyLayers;
+    [Header("Layers that are checked by the attacks")]
+    public LayerMask S_enemyLayers, C_enemyLayers, T_enemyLayers;
     [Header("Damage per attack")]
     public int damage;
     [Header("Cooldown between attacks")]
@@ -27,13 +27,20 @@ public class MeleeAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if (Input.GetMouseButtonDown(0))
         {
-            Attack();
+            SAttack();
         }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            CAttack();
+        }
+        */
     }
 
-    void Attack()
+    public void SAttack()
     {
         if (Time.time > timeBtwnAtk)
         {
@@ -41,7 +48,25 @@ public class MeleeAttack : MonoBehaviour
 
             anim.SetTrigger("Attack");
 
-            Collider2D[] enemiesHit = Physics2D.OverlapCircleAll(attackPos.position, attackRange, enemyLayers);
+            Collider2D[] enemiesHit = Physics2D.OverlapCircleAll(attackPos.position, attackRange, S_enemyLayers);
+
+            foreach (Collider2D enemy in enemiesHit)
+            {
+                Debug.Log("Enemy Hit!");
+                enemy.GetComponent<BasicEnemyHealth>().TakeDamage(damage);
+            }
+        }
+    }
+
+    public void CAttack()
+    {
+        if (Time.time > timeBtwnAtk)
+        {
+            timeBtwnAtk = Time.time + cooldown;
+
+            anim.SetTrigger("Attack");
+
+            Collider2D[] enemiesHit = Physics2D.OverlapCircleAll(attackPos.position, attackRange, C_enemyLayers);
 
             foreach (Collider2D enemy in enemiesHit)
             {

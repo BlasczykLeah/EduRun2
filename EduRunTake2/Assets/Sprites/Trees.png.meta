@@ -1,31 +1,16 @@
 fileFormatVersion: 2
-guid: 1080e3a0abeef452e92a2865147c4a92
+guid: b1d554559fd09af48a1ca3506eaf9383
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6737724048487822203
-    second: man_0
+      213: 2572236292851511218
+    second: Trees_0
   - first:
-      213: -6102451206531921958
-    second: man_1
+      213: 6224024930817484846
+    second: Trees_1
   - first:
-      213: -9063596418544571488
-    second: man_2
-  - first:
-      213: 8238122796709039737
-    second: man_3
-  - first:
-      213: 6252052846416535439
-    second: man_0
-  - first:
-      213: 9181459899043137385
-    second: man_1
-  - first:
-      213: -2105949721030856514
-    second: man_2
-  - first:
-      213: -2558979221038722630
-    second: man_3
+      213: -8911251428918342384
+    second: Trees_2
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -69,7 +54,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -96,18 +81,6 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -154,17 +127,29 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: man_0
+      name: Trees_0
       rect:
         serializedVersion: 2
-        x: 10
-        y: 10
-        width: 140
-        height: 170
+        x: 1
+        y: 0
+        width: 14
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -172,20 +157,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f8f90a360f0c3c650800000000000000
-      internalID: 6252052846416535439
+      spriteID: 2bf28c1b74b62b320800000000000000
+      internalID: 2572236292851511218
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: man_1
+      name: Trees_1
       rect:
         serializedVersion: 2
-        x: 170
-        y: 10
-        width: 140
-        height: 170
+        x: 16
+        y: 0
+        width: 15
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -193,20 +178,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 967c5f9f1291b6f70800000000000000
-      internalID: 9181459899043137385
+      spriteID: e282d82c2bd206650800000000000000
+      internalID: 6224024930817484846
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: man_2
+      name: Trees_2
       rect:
         serializedVersion: 2
-        x: 340
-        y: 10
-        width: 140
-        height: 170
+        x: 32
+        y: 0
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -214,29 +199,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eb07f13f2e926c2e0800000000000000
-      internalID: -2105949721030856514
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: man_3
-      rect:
-        serializedVersion: 2
-        x: 490
-        y: 10
-        width: 140
-        height: 170
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ab1916ed4fdac7cd0800000000000000
-      internalID: -2558979221038722630
+      spriteID: 01d412b0a00e45480800000000000000
+      internalID: -8911251428918342384
       vertices: []
       indices: 
       edges: []
@@ -244,7 +208,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 31edcb9deb046422c9667da4a9fa8f12
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 

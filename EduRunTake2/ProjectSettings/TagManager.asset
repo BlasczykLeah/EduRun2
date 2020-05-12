@@ -13,9 +13,9 @@ TagManager:
   - UI
   - 
   - 
-  - Enemy
-  - 
-  - 
+  - S_Enemy
+  - C_Enemy
+  - T_Enemy
   - 
   - 
   - 
@@ -40,6 +40,12 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Enemy
+    uniqueID: 3086231459
+    locked: 0
+  - name: Trees
+    uniqueID: 3486276927
     locked: 0
   - name: Player
     uniqueID: 2166138719
