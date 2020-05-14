@@ -76,6 +76,24 @@ public class MeleeAttack : MonoBehaviour
         }
     }
 
+    public void TAttack()
+    {
+        if (Time.time > timeBtwnAtk)
+        {
+            timeBtwnAtk = Time.time + cooldown;
+
+            anim.SetTrigger("Attack");
+
+            Collider2D[] enemiesHit = Physics2D.OverlapCircleAll(attackPos.position, attackRange, T_enemyLayers);
+
+            foreach (Collider2D enemy in enemiesHit)
+            {
+                Debug.Log("Enemy Hit!");
+                enemy.GetComponent<BasicEnemyHealth>().TakeDamage(damage);
+            }
+        }
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireSphere(attackPos.position, attackRange);
