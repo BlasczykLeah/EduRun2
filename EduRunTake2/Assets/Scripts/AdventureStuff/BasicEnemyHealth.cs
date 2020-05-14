@@ -6,13 +6,15 @@ public class BasicEnemyHealth : MonoBehaviour
 {
     public int currHealth, maxHealth;
     private float randX;
-    public GameObject Enemy;
+    private int randSpawn;
+    public GameObject S_Enemy, C_Enemy, T_Enemy;
 
     // Start is called before the first frame update
     void Start()
     {
         currHealth = maxHealth;
-        randX = Random.Range(-10f, 10f);
+        randX = Random.Range(-4f, 4f);
+        randSpawn = Random.Range(1, 4);
     }
 
     public void TakeDamage(int dmg)
@@ -21,6 +23,7 @@ public class BasicEnemyHealth : MonoBehaviour
 
         if(currHealth <= 0)
         {
+            Debug.Log(randSpawn);
             Spawn();
             Destroy(this.gameObject);
         }
@@ -28,6 +31,17 @@ public class BasicEnemyHealth : MonoBehaviour
 
     public void Spawn()
     {
-        Instantiate(Enemy, new Vector2(randX, 10), Quaternion.identity);
+        if(randSpawn == 1)
+        {
+            Instantiate(S_Enemy, new Vector2(randX, 8), Quaternion.identity);
+        }
+        else if(randSpawn == 2)
+        {
+            Instantiate(C_Enemy, new Vector2(randX, 8), Quaternion.identity);
+        }
+        else
+        {
+            Instantiate(T_Enemy, new Vector2(randX, 8), Quaternion.identity);
+        }
     }
 }
