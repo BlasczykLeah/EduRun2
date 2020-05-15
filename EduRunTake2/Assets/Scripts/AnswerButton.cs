@@ -9,16 +9,17 @@ public class AnswerButton : MonoBehaviour, IPointerClickHandler
     public float waitTime = 2F;
     public bool iAmRight = false;
 
-    public GameQuestion thing;
+    public GameQuestion questionBox;
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        thing.disableButtons();
+        questionBox.disableButtons();
 
         if (iAmRight)
         {
             // good things happen
             GetComponent<Image>().color = Color.green;
+            questionBox.GetComponent<GameQuestion>().correctAnswer();
         }
         else
         {
@@ -32,9 +33,14 @@ public class AnswerButton : MonoBehaviour, IPointerClickHandler
     {
         yield return new WaitForSecondsRealtime(time);
 
-        thing.gameObject.SetActive(false);
-        thing.answerBtns.Remove(this);
+        Time.timeScale = 1;
+        questionBox.gameObject.SetActive(false);
+        questionBox.answerBtns.Remove(this);
         GetComponent<Image>().color = Color.grey;
+
+        //take damage here
+        questionBox.GetComponent<GameQuestion>().boss.GetComponent<BossMove>().moveToStart();
+
         Destroy(this);
     }
 }

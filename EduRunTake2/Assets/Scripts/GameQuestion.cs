@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameQuestion : MonoBehaviour
 {
     public List<AnswerButton> answerBtns;
     public TMP_Text questionTxt;
+
+    public GameObject boss;
 
     Question roundQuestion;
     GameManager gm;
@@ -27,7 +30,7 @@ public class GameQuestion : MonoBehaviour
         for(int i = 0; i < answerBtns.Count; i++)
         {
             answerBtns[i].transform.GetChild(0).GetComponent<TMP_Text>().text = roundQuestion.answers[i];
-            answerBtns[i].thing = this;
+            answerBtns[i].questionBox = this;
         }
         answerBtns[roundQuestion.correctIndex].iAmRight = true;
 
@@ -48,5 +51,20 @@ public class GameQuestion : MonoBehaviour
         {
             answerBtns[i].GetComponent<Image>().raycastTarget = false;
         }
+    }
+
+    public void correctAnswer()
+    {
+        // check if next question or quiz ended, invoke correct method
+    }
+
+    public void nextQuestion()
+    {
+
+    }
+
+    public void backToMenu()
+    {
+
     }
 }
