@@ -48,7 +48,11 @@ public class GameManager : MonoBehaviour
 
     public Question pullQuestion()
     {
-        if (activeQuiz == null) return null;
+        if (activeQuiz == null)
+        {
+            Debug.LogError("No active quiz");
+            return null;
+        }
 
         if(activeQuiz.Count > 1)    // the last question is just the name of the quiz; it cannot be picked
         {
