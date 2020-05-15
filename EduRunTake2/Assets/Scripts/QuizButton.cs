@@ -14,10 +14,12 @@ public class QuizButton : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        gm.chosenQuiz = quizIndex;
+
         if (purposeSwap)
         {
             // playing game
-            gm.chosenQuiz = quizIndex;
+            //gm.chosenQuiz = quizIndex;
             // other game setup stuffs
             // this button does NOT start the game
         }

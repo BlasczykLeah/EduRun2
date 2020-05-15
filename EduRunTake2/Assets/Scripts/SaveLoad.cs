@@ -27,6 +27,9 @@ public static class SaveLoad
         Debug.Log("loading save data");
         if (File.Exists(Application.persistentDataPath + "/questionData.txt"))
         {
+            //Debug.Log(Application.persistentDataPath.ToString());
+            //my file location: C:\Users\Leah\AppData\LocalLow\DefaultCompany\EduRun
+
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/questionData.txt", FileMode.Open);
             List<QuizContainer> quizzes = (List<QuizContainer>)bf.Deserialize(file);

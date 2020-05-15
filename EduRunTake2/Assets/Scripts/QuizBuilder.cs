@@ -57,7 +57,7 @@ public class QuizBuilder : MonoBehaviour
 
     void Start()
     {
-        unfinishedQuiz = new List<Question>();
+        
     }
 
     public void saveQuestion(int index)
@@ -89,7 +89,11 @@ public class QuizBuilder : MonoBehaviour
         Question newQuestion = new Question(questionTxt.text, answers, correct);
 
         if (unfinishedQuiz.Count > index) unfinishedQuiz[index] = newQuestion;
-        else unfinishedQuiz.Add(newQuestion);
+        else
+        {
+            unfinishedQuiz.Add(newQuestion);
+            Debug.Log("Question added");
+        }
 
         resetInputs();
 
@@ -114,6 +118,7 @@ public class QuizBuilder : MonoBehaviour
             gm.addQuizToSave(newQuiz);
 
             resetMenus();
+            backToMain();
         }
         else Debug.Log("Input more questions!");
     }
@@ -141,8 +146,13 @@ public class QuizBuilder : MonoBehaviour
         for(int i = 0; i < quiz.container.Count - 1; i++)
         {
             newQuestionButton();
-            Question temp = quiz.container[i];
-            unfinishedQuiz.Add(temp);
+            questionTxt.text = quiz.container[i].question;
+            a1Txt.text = quiz.container[i].answers[0];
+            a2Txt.text = quiz.container[i].answers[1];
+            a3Txt.text = quiz.container[i].answers[2];
+            toggles[quiz.container[i].correctIndex].isOn = true;
+
+            saveQuestion(i);
         }
         quizTitle.text = quiz.container[unfinishedQuiz.Count].question;
     }
@@ -157,7 +167,7 @@ public class QuizBuilder : MonoBehaviour
         {
             deleteQuiz();
             resetMenus();
-            mainMenu.SetActive(true);
+            backToMain();
         }
         else
         {
@@ -177,7 +187,7 @@ public class QuizBuilder : MonoBehaviour
             SaveLoad.SaveQuizSet(gm.quizStorage);
             editedQuiz = null;
             return;
-        }// else it should be removed by simply resetting everything
+        }// else it should be removed by simply resetting everything, already done
     }
 
     public void deleteQuestion(int index)
@@ -223,6 +233,8 @@ public class QuizBuilder : MonoBehaviour
         quizzesMenu.SetActive(false);
         quizEditorMenu.SetActive(false);
         unfinishedQuiz = new List<Question>();
+
+        gm.chosenQuiz = -1;
     }
 
     void resetInputs()
@@ -249,6 +261,7 @@ public class QuizBuilder : MonoBehaviour
 
     public void backToMain()
     {
+        gm.chosenQuiz = -1;
         quizzesMenu.SetActive(false);
         gameplayMenu.SetActive(false);
         quizEditorMenu.SetActive(false);

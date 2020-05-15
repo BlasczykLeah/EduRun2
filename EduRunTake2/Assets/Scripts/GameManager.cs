@@ -32,7 +32,16 @@ public class GameManager : MonoBehaviour
 
     public void addQuizToSave(QuizContainer newQuiz)
     {
-        quizStorage.Add(newQuiz);
+        if (quizStorage.Count > chosenQuiz && chosenQuiz != -1)
+        {
+            quizStorage[chosenQuiz] = newQuiz;
+            quizButtons[chosenQuiz].transform.GetChild(0).GetComponent<TMP_Text>().text = quizStorage[chosenQuiz].container[quizStorage[chosenQuiz].container.Count - 1].question;
+        }
+        else
+        {
+            quizStorage.Add(newQuiz);
+            AddQuizButton();
+        }
         SaveLoad.SaveQuizSet(quizStorage);
     }
 
@@ -79,6 +88,7 @@ public class GameManager : MonoBehaviour
         // set main menu
     }
 
+    // makes a new quiz button at the end of the list
     public void AddQuizButton()
     {
         GameObject newButton = Instantiate(quizButtonPref);
@@ -91,6 +101,7 @@ public class GameManager : MonoBehaviour
         newButton.transform.SetParent(layoutGroup.transform, false); //might need to fix scale too
     }
 
+    // removes quiz button at index
     public void RemoveQuizButton(int index)
     {
         Destroy(layoutGroup.transform.GetChild(index).gameObject);
