@@ -2946,6 +2946,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1424212595}
+  - component: {fileID: 1424212596}
   m_Layer: 0
   m_Name: Sword Holder
   m_TagString: Untagged
@@ -2960,14 +2961,33 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1424212594}
-  m_LocalRotation: {x: 0, y: 0, z: -0.5384031, w: 0.8426875}
-  m_LocalPosition: {x: 0, y: 0.353, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.43, y: -0.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1698464562}
   m_Father: {fileID: 2031840442}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -65.15}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1424212596
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1424212594}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c7fb01b684ef22749aa8bb31036cd756, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1426554888
 GameObject:
   m_ObjectHideFlags: 0
@@ -2992,7 +3012,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1426554888}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.8, z: 0}
+  m_LocalPosition: {x: 0.12, y: 0.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2031840442}
@@ -3958,6 +3978,7 @@ MonoBehaviour:
     m_Bits: 1024
   damage: 2
   cooldown: 0.7
+  anim: {fileID: 1424212596}
 --- !u!95 &2031840444
 Animator:
   serializedVersion: 3

@@ -16,28 +16,18 @@ public class MeleeAttack : MonoBehaviour
     public float cooldown;
 
     private float timeBtwnAtk;
-    private Animator anim;
+    public Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponent<Animator>();
+        //anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*
-        if (Input.GetMouseButtonDown(0))
-        {
-            SAttack();
-        }
 
-        if (Input.GetMouseButtonDown(1))
-        {
-            CAttack();
-        }
-        */
     }
 
     public void SAttack()
