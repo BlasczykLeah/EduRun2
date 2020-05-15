@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class QuizButton : MonoBehaviour, IPointerClickHandler
@@ -11,6 +12,7 @@ public class QuizButton : MonoBehaviour, IPointerClickHandler
     public int quizIndex;
     GameManager gm;
     QuizBuilder qb;
+    Button playBtn;
 
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -19,7 +21,8 @@ public class QuizButton : MonoBehaviour, IPointerClickHandler
         if (purposeSwap)
         {
             // playing game
-            //gm.chosenQuiz = quizIndex;
+            if (playBtn == null) playBtn = GameObject.Find("GameplayMenu").transform.GetChild(0).GetComponent<Button>();
+            playBtn.interactable = true;
             // other game setup stuffs
             // this button does NOT start the game
         }

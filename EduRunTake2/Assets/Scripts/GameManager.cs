@@ -26,8 +26,8 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        quizStorage = new List<QuizContainer>();
-        quizStorage = SaveLoad.LoadQuestionSet();
+        //quizStorage = new List<QuizContainer>();
+        //quizStorage = SaveLoad.LoadQuestionSet();
     }
 
     public void addQuizToSave(QuizContainer newQuiz)
@@ -76,6 +76,9 @@ public class GameManager : MonoBehaviour
 
     public void LoadQuizButtons()   // this is called every time the main menu opens
     {
+        quizStorage = new List<QuizContainer>();
+        quizStorage = SaveLoad.LoadQuestionSet();
+
         layoutGroup = GameObject.Find("QuizList");
 
         quizButtons = new List<QuizButton>();
@@ -111,5 +114,16 @@ public class GameManager : MonoBehaviour
         {
             quizButtons[i].quizIndex = i;
         }
+    }
+
+    public void leaveMenuScene()
+    {
+
+    }
+
+    public void enterMenuScene()
+    {
+        quizStorage = new List<QuizContainer>();
+        quizStorage = SaveLoad.LoadQuestionSet();
     }
 }

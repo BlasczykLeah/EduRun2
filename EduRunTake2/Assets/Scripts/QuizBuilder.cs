@@ -253,6 +253,7 @@ public class QuizBuilder : MonoBehaviour
 
     public void openGameplayMenu()
     {
+        gameplayMenu.SetActive(true);
         quizzesMenu.SetActive(true);
         foreach (QuizButton a in gm.quizButtons) a.purposeSwap = true;
         gameplayMenu.SetActive(true);
