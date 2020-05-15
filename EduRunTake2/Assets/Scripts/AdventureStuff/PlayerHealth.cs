@@ -5,11 +5,13 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     public int totalHealth;
-    private int currHealth;
+    public int currHealth;
+    public bool isDead;
 
     void Start()
     {
         currHealth = totalHealth;
+        isDead = false;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -17,19 +19,22 @@ public class PlayerHealth : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             TakeDamage();
-            Destroy(collision.gameObject);
+            collision.gameObject.GetComponent<BasicEnemyHealth>().TakeDamage(999);
         }
     }
 
     void TakeDamage()
     {
+        currHealth--;
+
         if(currHealth <= 0)
         {
             Destroy(gameObject);
         }
-        else
-        {
-            currHealth--;
-        }
+    }
+
+    void Death()
+    {
+        isDead = true;
     }
 }
