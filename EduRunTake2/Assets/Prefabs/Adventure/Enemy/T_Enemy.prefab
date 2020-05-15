@@ -122,10 +122,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currHealth: 0
   maxHealth: 2
-  S_Enemy: {fileID: 5452803896207057452, guid: ebdcdf7286db233478bc27c7c46986c4, type: 3}
-  C_Enemy: {fileID: 8023891020203591490, guid: 7b7f6ab344c02bb479c25b60d9b986fe, type: 3}
-  T_Enemy: {fileID: 4592526083019147295}
-  player: {fileID: 6858748614488554237, guid: 1540716f229b7cb41ab11a50a613900f, type: 3}
+  enemyOne: {fileID: 8023891020203591490, guid: 7b7f6ab344c02bb479c25b60d9b986fe,
+    type: 3}
+  enemyTwo: {fileID: 5452803896207057452, guid: ebdcdf7286db233478bc27c7c46986c4,
+    type: 3}
 --- !u!114 &4592526083019147284
 MonoBehaviour:
   m_ObjectHideFlags: 0
