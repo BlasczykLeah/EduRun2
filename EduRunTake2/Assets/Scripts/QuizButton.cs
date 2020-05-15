@@ -32,7 +32,6 @@ public class QuizButton : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         gm = GameManager.inst;

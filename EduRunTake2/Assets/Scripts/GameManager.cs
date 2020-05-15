@@ -104,10 +104,12 @@ public class GameManager : MonoBehaviour
     // removes quiz button at index
     public void RemoveQuizButton(int index)
     {
+        quizButtons.RemoveAt(index);
         Destroy(layoutGroup.transform.GetChild(index).gameObject);
-        foreach(QuizButton a in quizButtons)
+
+        for(int i = chosenQuiz; i < quizButtons.Count; i++)
         {
-            a.quizIndex = a.transform.GetSiblingIndex();
+            quizButtons[i].quizIndex = i;
         }
     }
 }
