@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -116,14 +117,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void leaveMenuScene()
+    public void ResetColorQB()
     {
-
-    }
-
-    public void enterMenuScene()
-    {
-        quizStorage = new List<QuizContainer>();
-        quizStorage = SaveLoad.LoadQuestionSet();
+        foreach(QuizButton a in quizButtons)
+        {
+            a.GetComponent<Image>().color = Color.white;
+        }
     }
 }

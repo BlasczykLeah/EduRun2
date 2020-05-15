@@ -21,16 +21,22 @@ public class QuizButton : MonoBehaviour, IPointerClickHandler
         if (purposeSwap)
         {
             // playing game
+
+            gm.ResetColorQB();
+            GetComponent<Image>().color = Color.green;
+
             if (playBtn == null) playBtn = GameObject.Find("GameplayMenu").transform.GetChild(0).GetComponent<Button>();
             playBtn.interactable = true;
-            // other game setup stuffs
+
             // this button does NOT start the game
         }
         else
         {
             // opening quiz editor
+
             qb.gameObject.SetActive(true);
             qb.openQuizBuilder(gm.quizStorage[quizIndex]);
+
             // this button DOES open the quiz editor
         }
     }

@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 using System.Linq;
+using UnityEditor.PackageManager;
 //using UnityEngine.UIElements;
 
-    [System.Serializable]
+[System.Serializable]
 public class QuizContainer
 {
     public List<Question> container;
@@ -34,6 +36,8 @@ public class QuizBuilder : MonoBehaviour
     public GameObject questionButton;
     public TMP_InputField quizTitle;
     public GameObject confirmDeleteBox;
+    public GameObject errorBox;
+
     public GameObject quizzesMenu;
     public GameObject gameplayMenu;
     public GameObject quizEditorMenu;
@@ -50,14 +54,10 @@ public class QuizBuilder : MonoBehaviour
             inst = this;
             gm = GameManager.inst;
             gm.LoadQuizButtons();
+            Time.timeScale = 1;
             gameObject.SetActive(false);
         }
         else Destroy(this);
-    }
-
-    void Start()
-    {
-        
     }
 
     public void saveQuestion(int index)
@@ -75,12 +75,14 @@ public class QuizBuilder : MonoBehaviour
         // check for correctness:
         if (questionTxt.text == "" || a1Txt.text == "" || a2Txt.text == "" || a3Txt.text == "")
         {
-            Debug.Log("Invalid text inputs");
+            //Debug.Log("Invalid text inputs");
+            showErrorBox("Invalid text inputs.");
             return;
         }
         else if (correct == -1)
         {
-            Debug.Log("Choose correct answer");
+            //Debug.Log("Choose correct answer");
+            showErrorBox("Choose a correct answer.");
             return;
         }
 
@@ -107,7 +109,8 @@ public class QuizBuilder : MonoBehaviour
             string[] none = new string[3] { "", "", "" };
             if (quizTitle.text == "")
             {
-                Debug.Log("Invalid quiz name");
+                //Debug.Log("Invalid quiz name");
+                showErrorBox("Enter a quiz name.");
                 return;
             }
             Question title = new Question(quizTitle.text, none, -1);    // adding one more Question that holds the name of the quiz, this is not an actual question
@@ -120,7 +123,24 @@ public class QuizBuilder : MonoBehaviour
             resetMenus();
             backToMain();
         }
-        else Debug.Log("Input more questions!");
+        else
+        {
+            //Debug.Log("Input more questions!");
+            showErrorBox("Input more questions!");
+        }
+    }
+
+
+    void showErrorBox(string words)
+    {
+        errorBox.SetActive(true);
+        errorBox.transform.GetChild(0).GetComponent<TMP_Text>().text = words;
+        Invoke("hideErrorBox", 2.2F);
+    }
+    void hideErrorBox()
+    {
+        errorBox.transform.GetChild(0).GetComponent<TMP_Text>().text = "";
+        errorBox.SetActive(false);
     }
 
     void resetMenus()
@@ -263,9 +283,17 @@ public class QuizBuilder : MonoBehaviour
     public void backToMain()
     {
         gm.chosenQuiz = -1;
+        gm.ResetColorQB();
+
         quizzesMenu.SetActive(false);
         gameplayMenu.SetActive(false);
         quizEditorMenu.SetActive(false);
         mainMenu.SetActive(true);
+    }
+
+    public void startGame() //menu = 0, game = 1
+    {
+        gm.setActiveQuiz(gm.chosenQuiz);
+        SceneManager.LoadScene(1);
     }
 }
