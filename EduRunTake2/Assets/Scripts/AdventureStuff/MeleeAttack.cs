@@ -15,7 +15,7 @@ public class MeleeAttack : MonoBehaviour
     public int damage;
     [Header("Cooldown between attacks")]
     public float cooldown;
-
+    [Header("Amount of answers collected")]
     public int count;
     public GameObject answerCount;
     public Image[] dots;
@@ -42,6 +42,7 @@ public class MeleeAttack : MonoBehaviour
                 dots[i].enabled = false;
             }
         }
+
     }
 
     public void SAttack()
@@ -59,6 +60,15 @@ public class MeleeAttack : MonoBehaviour
                 Debug.Log("Enemy Hit!");
                 count++;
                 enemy.GetComponent<BasicEnemyHealth>().TakeDamage(damage);
+
+                if(count < 3)
+                {
+                    enemy.GetComponent<BasicEnemyHealth>().Spawn();
+                }
+                else if(count >= 3)
+                {
+                    //Spawn Boss
+                }
             }
         }
     }
@@ -78,6 +88,15 @@ public class MeleeAttack : MonoBehaviour
                 Debug.Log("Enemy Hit!");
                 count++;
                 enemy.GetComponent<BasicEnemyHealth>().TakeDamage(damage);
+
+                if (count < 3)
+                {
+                    enemy.GetComponent<BasicEnemyHealth>().Spawn();
+                }
+                else if (count >= 3)
+                {
+                    //Spawn Boss
+                }
             }
         }
     }
@@ -97,8 +116,22 @@ public class MeleeAttack : MonoBehaviour
                 Debug.Log("Enemy Hit!");
                 count++;
                 enemy.GetComponent<BasicEnemyHealth>().TakeDamage(damage);
+
+                if (count < 3)
+                {
+                    enemy.GetComponent<BasicEnemyHealth>().Spawn();
+                }
+                else if (count >= 3)
+                {
+                    //Spawn Boss
+                }
             }
         }
+    }
+
+    public void UnleashTheBoss()
+    {
+
     }
 
     private void OnDrawGizmosSelected()

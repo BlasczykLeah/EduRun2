@@ -141,6 +141,7 @@ MonoBehaviour:
   S_Enemy: {fileID: 5452803896207057452, guid: ebdcdf7286db233478bc27c7c46986c4, type: 3}
   C_Enemy: {fileID: 8023891020203591490}
   T_Enemy: {fileID: 4592526083019147295, guid: b15f569c5b273594bbe3756c31ce5772, type: 3}
+  player: {fileID: 6858748614488554237, guid: 1540716f229b7cb41ab11a50a613900f, type: 3}
 --- !u!114 &8023891020203591497
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -39,7 +39,16 @@ public class PlayerHealth : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             TakeDamage();
+            gameObject.GetComponent<MeleeAttack>().count++;
             collision.gameObject.GetComponent<BasicEnemyHealth>().TakeDamage(999);
+            if (GetComponent<MeleeAttack>().count < 3)
+            {
+                collision.gameObject.GetComponent<BasicEnemyHealth>().Spawn();
+            }
+            else if (GetComponent<MeleeAttack>().count >= 3)
+            {
+                //Spawn Boss
+            }
         }
     }
 

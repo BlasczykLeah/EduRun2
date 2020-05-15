@@ -24,7 +24,7 @@ public class BasicEnemyHealth : MonoBehaviour
         if(currHealth <= 0)
         {
             Debug.Log(randSpawn);
-            Spawn();
+            //Spawn();
             Destroy(this.gameObject);
         }
     }
