@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MeleeAttack : MonoBehaviour
 {
@@ -15,19 +16,32 @@ public class MeleeAttack : MonoBehaviour
     [Header("Cooldown between attacks")]
     public float cooldown;
 
+    public int count;
+    public GameObject answerCount;
+    public Image[] dots;
+    public Sprite fullDot, emptyDot;
+
     private float timeBtwnAtk;
     public Animator anim;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        //anim = GetComponent<Animator>();
+        count = 0;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-
+        for (int i = 0; i < dots.Length; i++)
+        {
+            if (i < count)
+            {
+                dots[i].enabled = true;
+            }
+            else
+            {
+                dots[i].enabled = false;
+            }
+        }
     }
 
     public void SAttack()
@@ -43,6 +57,7 @@ public class MeleeAttack : MonoBehaviour
             foreach (Collider2D enemy in enemiesHit)
             {
                 Debug.Log("Enemy Hit!");
+                count++;
                 enemy.GetComponent<BasicEnemyHealth>().TakeDamage(damage);
             }
         }
@@ -61,6 +76,7 @@ public class MeleeAttack : MonoBehaviour
             foreach (Collider2D enemy in enemiesHit)
             {
                 Debug.Log("Enemy Hit!");
+                count++;
                 enemy.GetComponent<BasicEnemyHealth>().TakeDamage(damage);
             }
         }
@@ -79,6 +95,7 @@ public class MeleeAttack : MonoBehaviour
             foreach (Collider2D enemy in enemiesHit)
             {
                 Debug.Log("Enemy Hit!");
+                count++;
                 enemy.GetComponent<BasicEnemyHealth>().TakeDamage(damage);
             }
         }
