@@ -10,7 +10,7 @@ public class GameQuestion : MonoBehaviour
     public List<AnswerButton> answerBtns;
     public TMP_Text questionTxt;
 
-    public GameObject nextBtn, quitBtn; //can add show score btn later
+    public GameObject nextBtn, quitBtn, winTxt;
     bool gameOver = false;
     
     public GameObject boss;
@@ -83,7 +83,11 @@ public class GameQuestion : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(time);
 
-        if (gameOver) quitBtn.SetActive(true);
+        if (gameOver)
+        {
+            quitBtn.SetActive(true);
+            winTxt.SetActive(true);
+        }
         else nextBtn.SetActive(true);
     }
 
