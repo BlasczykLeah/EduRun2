@@ -592,6 +592,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAnim: {fileID: 1617455838}
+  swordAnim: {fileID: 1859385363}
   Boss: {fileID: 92599637}
 --- !u!1 &523604433
 GameObject:
@@ -2892,6 +2893,12 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1582337932276621100, guid: bea606b6f009f464f8da74018af9f38f,
     type: 3}
   m_PrefabInstance: {fileID: 1856565662}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1859385363 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6858748615894046584, guid: 1540716f229b7cb41ab11a50a613900f,
+    type: 3}
+  m_PrefabInstance: {fileID: 6858748615036425484}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1972055040
 GameObject:
