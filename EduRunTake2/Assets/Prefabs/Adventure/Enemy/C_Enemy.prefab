@@ -190,8 +190,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: 1
-  waitMin: 2
-  waitMax: 5
+  waitMin: 0
+  waitMax: 0
 --- !u!82 &5240171009678472388
 AudioSource:
   m_ObjectHideFlags: 0
