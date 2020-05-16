@@ -10,7 +10,9 @@ public class UnToggle : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        foreach(Toggle t in otherToggles)
+        FXplayer.fxplayer.PlayFX(fxOptions.tap);
+
+        foreach (Toggle t in otherToggles)
         {
             if (t.isOn) t.isOn = false;
         }

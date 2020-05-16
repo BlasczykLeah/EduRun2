@@ -30,6 +30,7 @@ public class BasicEnemyHealth : MonoBehaviour
         {
             Debug.Log(randSpawn);
             //Spawn();
+            FXplayer.fxplayer.PlayFX(fxOptions.itemPickup);
             Instantiate(poof, gameObject.transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }

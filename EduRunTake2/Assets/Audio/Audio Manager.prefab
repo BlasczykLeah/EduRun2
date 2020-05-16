@@ -157,6 +157,9 @@ MonoBehaviour:
   - fx: 4
     audioClip: {fileID: 8300000, guid: 92c3f57f9dc004748bb38f040fbc3764, type: 3}
     clipVolume: 0.879
+  - fx: 5
+    audioClip: {fileID: 8300000, guid: 117a15fa16ee84278a379bb2c763eced, type: 3}
+    clipVolume: 0.879
 --- !u!1 &5586127411273268488
 GameObject:
   m_ObjectHideFlags: 0

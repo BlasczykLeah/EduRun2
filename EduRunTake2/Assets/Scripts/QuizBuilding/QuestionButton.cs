@@ -32,6 +32,8 @@ public class QuestionButton : MonoBehaviour, IPointerClickHandler
         // open QuestionInput and sending myIndex to Save button
         // if this question has been saved before, load question/answers/toggles correctly
 
+        FXplayer.fxplayer.PlayFX(fxOptions.tap);
+
         saveBtn.activeQuestion = myIndex;
         dltBtn.activeQuestion = myIndex;
         questionInput.SetActive(true);

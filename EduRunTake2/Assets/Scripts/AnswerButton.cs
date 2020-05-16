@@ -24,12 +24,14 @@ public class AnswerButton : MonoBehaviour, IPointerClickHandler
             if (iAmRight)
             {
                 // good things happen
+                FXplayer.fxplayer.PlayFX(fxOptions.correct);
                 GetComponent<Image>().color = new Color(158, 255, 148);
                 questionBox.GetComponent<GameQuestion>().correctAnswer();
             }
             else
             {
                 // bad things happen
+                FXplayer.fxplayer.PlayFX(fxOptions.incorrect);
                 GetComponent<Image>().color = new Color(255, 124, 124);
 
                 player.GetComponent<PlayerHealth>().TakeDamage();

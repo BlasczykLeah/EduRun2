@@ -14,7 +14,7 @@ public struct enemyEssence
 }
 
 [System.Serializable]
-public enum fxOptions { itemPickup, correct, incorrect, gethit, tap };
+public enum fxOptions { itemPickup, correct, incorrect, gethit, tap, boss };
 //public enum fxOptions { fireBall, fireballImpact, squish, slime, bat, itemPickup, itemDrop };
 
 

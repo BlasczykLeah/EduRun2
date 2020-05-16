@@ -110,6 +110,8 @@ public class QuizBuilder : MonoBehaviour
                 showErrorBox("Enter a quiz name.");
                 return;
             }
+            FXplayer.fxplayer.PlayFX(fxOptions.tap);
+
             Question title = new Question(quizTitle.text, none, -1);    // adding one more Question that holds the name of the quiz, this is not an actual question
             unfinishedQuiz.Add(title);
 
@@ -130,6 +132,7 @@ public class QuizBuilder : MonoBehaviour
 
     void showErrorBox(string words)
     {
+        FXplayer.fxplayer.PlayFX(fxOptions.incorrect);
         errorBox.SetActive(true);
         errorBox.transform.GetChild(0).GetComponent<TMP_Text>().text = words;
         Invoke("hideErrorBox", 2.2F);
@@ -176,10 +179,12 @@ public class QuizBuilder : MonoBehaviour
 
     public void showConfirmDelete()
     {
+        FXplayer.fxplayer.PlayFX(fxOptions.tap);
         confirmDeleteBox.SetActive(true);
     }
     public void confirmDeleteQuiz(bool delete)
     {
+        FXplayer.fxplayer.PlayFX(fxOptions.tap);
         if (delete)
         {
             deleteQuiz();
@@ -246,6 +251,7 @@ public class QuizBuilder : MonoBehaviour
 
     public void startNewQuiz()
     {
+        FXplayer.fxplayer.PlayFX(fxOptions.tap);
         gameObject.SetActive(true);
         quizzesMenu.SetActive(false);
         quizEditorMenu.SetActive(false);
@@ -262,6 +268,7 @@ public class QuizBuilder : MonoBehaviour
 
     public void openQuizEditingMenu()
     {
+        FXplayer.fxplayer.PlayFX(fxOptions.tap);
         quizEditorMenu.SetActive(true);
         quizzesMenu.SetActive(true);
         foreach (QuizButton a in gm.quizButtons) a.purposeSwap = false;
@@ -270,6 +277,7 @@ public class QuizBuilder : MonoBehaviour
 
     public void openGameplayMenu()
     {
+        FXplayer.fxplayer.PlayFX(fxOptions.tap);
         gameplayMenu.SetActive(true);
         quizzesMenu.SetActive(true);
         foreach (QuizButton a in gm.quizButtons) a.purposeSwap = true;
@@ -279,6 +287,7 @@ public class QuizBuilder : MonoBehaviour
 
     public void backToMain()
     {
+        FXplayer.fxplayer.PlayFX(fxOptions.tap);
         gm.chosenQuiz = -1;
         gm.ResetColorQB();
 
@@ -290,7 +299,13 @@ public class QuizBuilder : MonoBehaviour
 
     public void startGame() //menu = 0, game = 1
     {
+        FXplayer.fxplayer.PlayFX(fxOptions.tap);
         gm.setActiveQuiz(gm.chosenQuiz);
         SceneManager.LoadScene(1);
+    }
+
+    public void playTapSound()
+    {
+        FXplayer.fxplayer.PlayFX(fxOptions.tap);
     }
 }

@@ -48,6 +48,8 @@ public class GameQuestion : MonoBehaviour
 
     private void OnEnable()
     {
+        FXplayer.fxplayer.PlayFX(fxOptions.boss);
+
         for (int i = 0; i < answerBtns.Count; i++)
         {
             answerBtns[i].GetComponent<Image>().raycastTarget = true;

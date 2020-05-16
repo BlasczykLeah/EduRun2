@@ -17,6 +17,7 @@ public class QuizButton : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         gm.chosenQuiz = quizIndex;
+        FXplayer.fxplayer.PlayFX(fxOptions.tap);
 
         if (purposeSwap)
         {
