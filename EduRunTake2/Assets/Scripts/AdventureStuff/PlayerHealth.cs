@@ -8,6 +8,7 @@ public class PlayerHealth : MonoBehaviour
     public int totalHealth;
     public int currHealth;
     public bool isDead;
+    public GameObject deathScreen, boss;
 
     public GameObject healthBar;
     public Image[] hearts;
@@ -47,7 +48,7 @@ public class PlayerHealth : MonoBehaviour
             }
             else if (GetComponent<MeleeAttack>().count >= 3)
             {
-                //Spawn Boss
+                boss.SetActive(true);
             }
         }
     }
@@ -55,6 +56,7 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage()
     {
         currHealth--;
+        Handheld.Vibrate();
 
         if(currHealth <= 0)
         {
@@ -66,6 +68,8 @@ public class PlayerHealth : MonoBehaviour
 
     void Death()
     {
+        deathScreen.SetActive(true);
+        deathScreen.GetComponent<Animator>().SetBool("dead", true);
         isDead = true;
         Time.timeScale = 0f;
     }
