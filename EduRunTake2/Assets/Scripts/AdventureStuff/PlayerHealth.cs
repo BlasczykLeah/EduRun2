@@ -53,7 +53,7 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage()
     {
         currHealth--;
-        Handheld.Vibrate();
+        //Handheld.Vibrate();
         FXplayer.fxplayer.PlayFX(fxOptions.gethit);
 
         if (currHealth <= 0)
