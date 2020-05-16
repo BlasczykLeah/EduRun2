@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2630917541617562142}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -21.05055, y: 3.1942682, z: 18.209278}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2630917542704036534}
@@ -54,7 +54,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2630917541640095538}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -24.010551, y: 0.79426813, z: 18.209278}
+  m_LocalPosition: {x: -2.7400017, y: -1.0799994, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2630917542704036534}
@@ -75,7 +75,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2630917542704036534
 Transform:
   m_ObjectHideFlags: 0
@@ -118,7 +118,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2630917542884149427}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -18.40055, y: -2.0157318, z: 18.209278}
+  m_LocalPosition: {x: 1.74, y: -2.34, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2630917542704036534}
@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 2630917542979093881}
   - component: {fileID: 2630917542979093880}
   - component: {fileID: 2630917542979093887}
+  - component: {fileID: 1831066512}
   m_Layer: 0
   m_Name: BadMe
   m_TagString: Untagged
@@ -150,7 +151,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2630917542979093886}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -21.05055, y: 3.1942682, z: 18.209278}
+  m_LocalPosition: {x: 0, y: 3.92, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2630917542704036534}
@@ -192,12 +193,12 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1208735837
+  m_SortingLayer: 1
   m_SortingOrder: 2
-  m_Sprite: {fileID: 6737724048487822203, guid: 1080e3a0abeef452e92a2865147c4a92,
+  m_Sprite: {fileID: 8929391899676345934, guid: e11f9f4f652fb4c71bc1f7f45b52e309,
     type: 3}
-  m_Color: {r: 0.5754717, g: 0.10586509, b: 0.10586509, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -224,7 +225,26 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 2630917541640095539}
   - {fileID: 2630917542884150092}
-  waitToMove: 1.2
-  maxPoints: 5
-  speed: 5
+  waitToMove: 1
+  maxPoints: 3
+  speed: 6
   questionBox: {fileID: 0}
+--- !u!95 &1831066512
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2630917542979093886}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6e213ab21f0939648af37568a5d9f20b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
