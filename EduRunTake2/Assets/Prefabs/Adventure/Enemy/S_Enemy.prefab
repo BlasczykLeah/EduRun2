@@ -152,6 +152,7 @@ MonoBehaviour:
     type: 3}
   enemyTwo: {fileID: 4592526083019147295, guid: b15f569c5b273594bbe3756c31ce5772,
     type: 3}
+  poof: {fileID: 8925827760697949538, guid: 5877bed2807897643a0a432a0f6dc8cc, type: 3}
 --- !u!114 &5452803896207057455
 MonoBehaviour:
   m_ObjectHideFlags: 0

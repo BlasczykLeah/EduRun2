@@ -7,7 +7,7 @@ public class BasicEnemyHealth : MonoBehaviour
     public int currHealth, maxHealth;
     private float randX;
     private int randSpawn;
-    public GameObject enemyOne, enemyTwo;
+    public GameObject enemyOne, enemyTwo, poof;
 
     // Start is called before the first frame update
     private void Awake()
@@ -30,6 +30,7 @@ public class BasicEnemyHealth : MonoBehaviour
         {
             Debug.Log(randSpawn);
             //Spawn();
+            Instantiate(poof, gameObject.transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
     }
