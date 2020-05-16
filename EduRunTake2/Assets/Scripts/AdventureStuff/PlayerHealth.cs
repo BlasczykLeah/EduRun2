@@ -52,7 +52,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    void TakeDamage()
+    public void TakeDamage()
     {
         currHealth--;
 
