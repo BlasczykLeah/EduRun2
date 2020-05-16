@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     public GameObject quizButtonPref;
     public List<QuizButton> quizButtons;
 
+    List<Question> completedQuestions;
+
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -59,6 +61,8 @@ public class GameManager : MonoBehaviour
             int randQuestion = UnityEngine.Random.Range(0, activeQuiz.Count - 1);
             Question quest = activeQuiz[randQuestion];
             activeQuiz.Remove(quest);
+
+            completedQuestions.Add(quest);
             return quest;
         }
         else
@@ -83,6 +87,7 @@ public class GameManager : MonoBehaviour
     {
         quizStorage = new List<QuizContainer>();
         quizStorage = SaveLoad.LoadQuestionSet();
+        completedQuestions = new List<Question>();
 
         layoutGroup = GameObject.Find("QuizList");
 
@@ -126,6 +131,25 @@ public class GameManager : MonoBehaviour
         foreach(QuizButton a in quizButtons)
         {
             a.GetComponent<Image>().color = Color.white;
+        }
+    }
+
+    public void finalQuestions(GameObject questionsHolder)
+    {
+        //fill questions
+        if (completedQuestions.Count <= 0) return;
+
+        for(int i = 0; i < completedQuestions.Count; i++)
+        {
+            questionsHolder.transform.GetChild(i).gameObject.SetActive(true);
+            GameObject myBox = questionsHolder.transform.GetChild(i).gameObject;
+
+            myBox.transform.GetChild(0).GetComponent<TMP_Text>().text = completedQuestions[i].question;
+            myBox.transform.GetChild(1).GetComponent<TMP_Text>().text = completedQuestions[i].answers[0];
+            myBox.transform.GetChild(2).GetComponent<TMP_Text>().text = completedQuestions[i].answers[1];
+            myBox.transform.GetChild(3).GetComponent<TMP_Text>().text = completedQuestions[i].answers[2];
+
+            myBox.transform.GetChild(completedQuestions[i].correctIndex + 1).GetComponent<TMP_Text>().color = new Color32(158, 255, 148, 255);
         }
     }
 }

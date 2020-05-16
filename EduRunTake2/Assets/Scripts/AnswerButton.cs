@@ -25,14 +25,14 @@ public class AnswerButton : MonoBehaviour, IPointerClickHandler
             {
                 // good things happen
                 FXplayer.fxplayer.PlayFX(fxOptions.correct);
-                GetComponent<Image>().color = new Color(158, 255, 148);
+                GetComponent<Image>().color = new Color32(158, 255, 148, 255);
                 questionBox.GetComponent<GameQuestion>().correctAnswer();
             }
             else
             {
                 // bad things happen
                 FXplayer.fxplayer.PlayFX(fxOptions.incorrect);
-                GetComponent<Image>().color = new Color(255, 124, 124);
+                GetComponent<Image>().color = new Color32(255, 124, 124, 255);
 
                 player.GetComponent<PlayerHealth>().TakeDamage();
 
