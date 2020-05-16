@@ -9,6 +9,8 @@ public class AnswerButton : MonoBehaviour, IPointerClickHandler
     public float waitTime = 2F;
     public bool iAmRight = false;
 
+    public GameObject player;
+
     public GameQuestion questionBox;
 
     public void OnPointerClick(PointerEventData eventData)
@@ -26,7 +28,7 @@ public class AnswerButton : MonoBehaviour, IPointerClickHandler
             // bad things happen
             GetComponent<Image>().color = Color.red;
 
-            //***take damage here***
+            player.GetComponent<PlayerHealth>().TakeDamage();
 
             StartCoroutine(backToBoss(waitTime));
         }

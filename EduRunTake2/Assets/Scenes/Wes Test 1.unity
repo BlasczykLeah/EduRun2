@@ -4846,6 +4846,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waitTime: 2
   iAmRight: 0
+  player: {fileID: 2031840440}
   questionBox: {fileID: 6533190798354970901}
 --- !u!1 &6533190797694424754
 GameObject:
@@ -4936,6 +4937,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waitTime: 2
   iAmRight: 0
+  player: {fileID: 2031840440}
   questionBox: {fileID: 6533190798354970901}
 --- !u!224 &6533190797994232038
 RectTransform:
@@ -5054,6 +5056,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waitTime: 2
   iAmRight: 0
+  player: {fileID: 2031840440}
   questionBox: {fileID: 6533190798354970901}
 --- !u!1 &6533190798303338493
 GameObject:
