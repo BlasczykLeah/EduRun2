@@ -37,7 +37,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 275, y: 275}
+  m_SizeDelta: {x: 328.05, y: 275}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3424052148075355455
 CanvasRenderer:
@@ -65,7 +65,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 8161463175179310021, guid: f8dc408b06abb584f8b56bf78707c75f,
+    type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -155,7 +156,7 @@ MonoBehaviour:
   m_text: Quiz Name
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e60f7cd76fff7a74ca16b81e7696e138, type: 2}
-  m_sharedMaterial: {fileID: 6415266038415920581, guid: e60f7cd76fff7a74ca16b81e7696e138,
+  m_sharedMaterial: {fileID: -4694052098999249136, guid: e60f7cd76fff7a74ca16b81e7696e138,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
