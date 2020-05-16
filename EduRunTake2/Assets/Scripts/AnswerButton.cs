@@ -9,28 +9,33 @@ public class AnswerButton : MonoBehaviour, IPointerClickHandler
     public float waitTime = 2F;
     public bool iAmRight = false;
 
+    public bool interactable = true;
+
     public GameObject player;
 
     public GameQuestion questionBox;
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        questionBox.disableButtons();
-
-        if (iAmRight)
+        if (interactable)
         {
-            // good things happen
-            GetComponent<Image>().color = Color.green;
-            questionBox.GetComponent<GameQuestion>().correctAnswer();
-        }
-        else
-        {
-            // bad things happen
-            GetComponent<Image>().color = Color.red;
+            questionBox.disableButtons();
 
-            player.GetComponent<PlayerHealth>().TakeDamage();
+            if (iAmRight)
+            {
+                // good things happen
+                GetComponent<Image>().color = Color.green;
+                questionBox.GetComponent<GameQuestion>().correctAnswer();
+            }
+            else
+            {
+                // bad things happen
+                GetComponent<Image>().color = Color.red;
 
-            StartCoroutine(backToBoss(waitTime));
+                player.GetComponent<PlayerHealth>().TakeDamage();
+
+                StartCoroutine(backToBoss(waitTime));
+            }
         }
     }
 

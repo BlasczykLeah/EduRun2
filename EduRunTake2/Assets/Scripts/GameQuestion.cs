@@ -47,6 +47,7 @@ public class GameQuestion : MonoBehaviour
         for (int i = 0; i < answerBtns.Count; i++)
         {
             answerBtns[i].GetComponent<Image>().raycastTarget = true;
+            answerBtns[i].interactable = true;
         }
     }
 
@@ -55,6 +56,7 @@ public class GameQuestion : MonoBehaviour
         for (int i = 0; i < answerBtns.Count; i++)
         {
             answerBtns[i].GetComponent<Image>().raycastTarget = false;
+            answerBtns[i].interactable = false;
         }
     }
 
