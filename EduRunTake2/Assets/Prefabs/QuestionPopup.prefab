@@ -709,7 +709,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waitTime: 2
   iAmRight: 0
-  questionBox: {fileID: 0}
+  questionBox: {fileID: 6533190799323854603}
 --- !u!1 &6533190798864636076
 GameObject:
   m_ObjectHideFlags: 0
@@ -799,7 +799,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waitTime: 2
   iAmRight: 0
-  questionBox: {fileID: 0}
+  questionBox: {fileID: 6533190799323854603}
 --- !u!1 &6533190799323854601
 GameObject:
   m_ObjectHideFlags: 0
@@ -895,6 +895,8 @@ MonoBehaviour:
   - {fileID: 6533190798864636079}
   - {fileID: 6533190798694680315}
   questionTxt: {fileID: 6533190798564015145}
+  nextBtn: {fileID: 0}
+  quitBtn: {fileID: 0}
   boss: {fileID: 0}
 --- !u!1 &6533190799481934307
 GameObject:
@@ -985,4 +987,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waitTime: 2
   iAmRight: 0
-  questionBox: {fileID: 0}
+  questionBox: {fileID: 6533190799323854603}

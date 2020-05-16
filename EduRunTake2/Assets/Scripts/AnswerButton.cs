@@ -25,6 +25,9 @@ public class AnswerButton : MonoBehaviour, IPointerClickHandler
         {
             // bad things happen
             GetComponent<Image>().color = Color.red;
+
+            //***take damage here***
+
             StartCoroutine(backToBoss(waitTime));
         }
     }
@@ -38,7 +41,6 @@ public class AnswerButton : MonoBehaviour, IPointerClickHandler
         questionBox.answerBtns.Remove(this);
         GetComponent<Image>().color = Color.grey;
 
-        //take damage here
         questionBox.GetComponent<GameQuestion>().boss.GetComponent<BossMove>().moveToStart();
 
         Destroy(this);
