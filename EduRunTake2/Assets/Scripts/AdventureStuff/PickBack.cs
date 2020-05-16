@@ -16,6 +16,16 @@ public class PickBack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(randNum == 0)
+        {
+            happy.SetActive(true);
+            sad.SetActive(false);
+        }
+        else
+        {
+            happy.SetActive(false);
+            sad.SetActive(true);
+        }
         
     }
 }

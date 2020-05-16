@@ -537,6 +537,7 @@ GameObject:
   - component: {fileID: 279574715}
   - component: {fileID: 279574714}
   - component: {fileID: 279574716}
+  - component: {fileID: 279574717}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -594,6 +595,20 @@ MonoBehaviour:
   playerAnim: {fileID: 1617455838}
   swordAnim: {fileID: 1859385363}
   Boss: {fileID: 92599637}
+--- !u!114 &279574717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279574713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5999f4ef46b983941bfe18e9427e8aa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  happy: {fileID: 4065287652141544018}
+  sad: {fileID: 3075019864542782287}
 --- !u!1 &329286807
 GameObject:
   m_ObjectHideFlags: 0
@@ -3441,10 +3456,16 @@ PrefabInstance:
     - target: {fileID: 7556234910335911862, guid: 679593d0a4bcde64d9267110399c371e,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 679593d0a4bcde64d9267110399c371e, type: 3}
+--- !u!1 &3075019864542782287 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7556234910335911862, guid: 679593d0a4bcde64d9267110399c371e,
+    type: 3}
+  m_PrefabInstance: {fileID: 3075019864542782286}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4065287652141544017
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3519,6 +3540,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce7709e89982dfb42969a4adad82cd79, type: 3}
+--- !u!1 &4065287652141544018 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4065287653307180751, guid: ce7709e89982dfb42969a4adad82cd79,
+    type: 3}
+  m_PrefabInstance: {fileID: 4065287652141544017}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4787759454889043195 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7556234910335911861, guid: 679593d0a4bcde64d9267110399c371e,
