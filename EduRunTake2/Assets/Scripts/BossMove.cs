@@ -20,7 +20,7 @@ public class BossMove : MonoBehaviour
 
     void Start()
     {
-        Invoke("PickNewPoint", waitToMove);
+        moveToStart();
     }
 
     void Update()
