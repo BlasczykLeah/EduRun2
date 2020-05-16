@@ -32,18 +32,24 @@ public class GameQuestion : MonoBehaviour
         roundQuestion = gm.pullQuestion();
 
         questionTxt.text = roundQuestion.question;
+
+        int[] rand = randNums();
         for(int i = 0; i < answerBtns.Count; i++)
         {
-            answerBtns[i].transform.GetChild(0).GetComponent<TMP_Text>().text = roundQuestion.answers[i];
-            answerBtns[i].questionBox = this;
+            answerBtns[rand[i]].transform.GetChild(0).GetComponent<TMP_Text>().text = roundQuestion.answers[i];
+            answerBtns[rand[i]].questionBox = this;
+
+            if(i == roundQuestion.correctIndex) answerBtns[rand[i]].iAmRight = true;
         }
-        answerBtns[roundQuestion.correctIndex].iAmRight = true;
+        //answerBtns[roundQuestion.correctIndex].iAmRight = true;
 
         gameObject.SetActive(false);
     }
 
     private void OnEnable()
     {
+        FXplayer.fxplayer.PlayFX(fxOptions.boss);
+
         for (int i = 0; i < answerBtns.Count; i++)
         {
             answerBtns[i].GetComponent<Image>().raycastTarget = true;
@@ -89,5 +95,16 @@ public class GameQuestion : MonoBehaviour
     public void backToMenu()
     {
         SceneManager.LoadScene(0);
+    }
+
+    int[] randNums()
+    {
+        int[] nums = new int[3];
+
+        nums[0] = nums[1] = nums[2] = Random.Range(0, 3);
+        while (nums[1] == nums[0]) nums[1] = Random.Range(0, 3);
+        while (nums[2] == nums[1] || nums[2] == nums[0]) nums[2] = Random.Range(0, 3);
+
+        return nums;
     }
 }

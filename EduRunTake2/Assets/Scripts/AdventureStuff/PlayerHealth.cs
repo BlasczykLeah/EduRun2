@@ -53,8 +53,9 @@ public class PlayerHealth : MonoBehaviour
     {
         currHealth--;
         Handheld.Vibrate();
+        FXplayer.fxplayer.PlayFX(fxOptions.gethit);
 
-        if(currHealth <= 0)
+        if (currHealth <= 0)
         {
             Death();
             Destroy(gameObject);

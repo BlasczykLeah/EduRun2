@@ -10,6 +10,7 @@ public class SaveButton : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        FXplayer.fxplayer.PlayFX(fxOptions.tap);
         inst.saveQuestion(activeQuestion);
     }
 }

@@ -17,13 +17,14 @@ public class QuizButton : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         gm.chosenQuiz = quizIndex;
+        FXplayer.fxplayer.PlayFX(fxOptions.tap);
 
         if (purposeSwap)
         {
             // playing game
 
             gm.ResetColorQB();
-            GetComponent<Image>().color = Color.green;
+            GetComponent<Image>().color = new Color(158, 255, 148);
 
             if (playBtn == null) playBtn = GameObject.Find("GameplayMenu").transform.GetChild(0).GetComponent<Button>();
             playBtn.interactable = true;
