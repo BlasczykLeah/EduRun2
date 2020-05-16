@@ -301,7 +301,7 @@ public class QuizBuilder : MonoBehaviour
     {
         FXplayer.fxplayer.PlayFX(fxOptions.tap);
         gm.setActiveQuiz(gm.chosenQuiz);
-        SceneManager.LoadScene(1);
+        //SceneManager.LoadScene(1);
     }
 
     public void playTapSound()
