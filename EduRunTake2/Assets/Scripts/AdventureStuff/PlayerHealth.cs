@@ -46,10 +46,6 @@ public class PlayerHealth : MonoBehaviour
             {
                 collision.gameObject.GetComponent<BasicEnemyHealth>().Spawn();
             }
-            else if (GetComponent<MeleeAttack>().count >= 3)
-            {
-                boss.SetActive(true);
-            }
         }
     }
 

@@ -121,10 +121,6 @@ public class MeleeAttack : MonoBehaviour
                 {
                     enemy.GetComponent<BasicEnemyHealth>().Spawn();
                 }
-                else if (count >= 3)
-                {
-                    //Spawn Boss
-                }
             }
         }
     }
