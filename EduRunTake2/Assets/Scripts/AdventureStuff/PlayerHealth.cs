@@ -58,6 +58,7 @@ public class PlayerHealth : MonoBehaviour
 
         if(currHealth <= 0)
         {
+            Death();
             Destroy(gameObject);
             Destroy(healthBar);
         }
@@ -66,5 +67,6 @@ public class PlayerHealth : MonoBehaviour
     void Death()
     {
         isDead = true;
+        Time.timeScale = 0f;
     }
 }
