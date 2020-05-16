@@ -4,9 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
-using System.Linq;
-using UnityEditor.PackageManager;
-//using UnityEngine.UIElements;
 
 [System.Serializable]
 public class QuizContainer
