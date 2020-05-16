@@ -11,7 +11,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Wes Test.unity
     guid: bc09b67cce3717c49b13f568e2a5572f
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Wes Test 1.unity
+    guid: b51d89c86b8fa5c4eb514418d785b063
   m_configObjects: {}

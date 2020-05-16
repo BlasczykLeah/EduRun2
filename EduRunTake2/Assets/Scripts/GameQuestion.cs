@@ -10,6 +10,9 @@ public class GameQuestion : MonoBehaviour
     public List<AnswerButton> answerBtns;
     public TMP_Text questionTxt;
 
+    public GameObject nextBtn, quitBtn; //can add show score btn later
+    bool gameOver = false;
+    
     public GameObject boss;
 
     Question roundQuestion;
@@ -17,6 +20,8 @@ public class GameQuestion : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1;
+
         if(GameManager.inst == null)
         {
             Debug.LogError("GameManager not found");
@@ -56,15 +61,31 @@ public class GameQuestion : MonoBehaviour
     public void correctAnswer()
     {
         // check if next question or quiz ended, invoke correct method
+        foreach (AnswerButton a in answerBtns) a.enabled = false;
+
+        if(gm.activeQuiz.Count <= 1)
+        {
+            // out of questions, show menu btn
+            gameOver = true;
+        }
+        StartCoroutine(showBtn(1));
+    }
+
+    IEnumerator showBtn(float time)
+    {
+        yield return new WaitForSecondsRealtime(time);
+
+        if (gameOver) quitBtn.SetActive(true);
+        else nextBtn.SetActive(true);
     }
 
     public void nextQuestion()
     {
-
+        SceneManager.LoadScene(1);
     }
 
     public void backToMenu()
     {
-
+        SceneManager.LoadScene(0);
     }
 }
