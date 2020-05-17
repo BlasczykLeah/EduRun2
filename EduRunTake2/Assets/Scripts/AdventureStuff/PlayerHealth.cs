@@ -9,6 +9,7 @@ public class PlayerHealth : MonoBehaviour
     public int currHealth;
     public bool isDead;
     public GameObject deathScreen, boss;
+    public GameObject disappointmentTxt;
 
     public GameObject healthBar;
     public Image[] hearts;
@@ -52,7 +53,7 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage()
     {
         currHealth--;
-        Handheld.Vibrate();
+        //Handheld.Vibrate();
         FXplayer.fxplayer.PlayFX(fxOptions.gethit);
 
         if (currHealth <= 0)
@@ -66,6 +67,7 @@ public class PlayerHealth : MonoBehaviour
     void Death()
     {
         deathScreen.SetActive(true);
+        disappointmentTxt.SetActive(true);
         deathScreen.GetComponent<Animator>().SetBool("dead", true);
         isDead = true;
         Time.timeScale = 0f;
